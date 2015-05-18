@@ -43,6 +43,7 @@ public class AddFractionsTest {
 
         public Fraction(int integerValue) {
             this.integerValue = integerValue;
+            this.numerator = integerValue;
             this.denominator = 1;
         }
 
@@ -69,7 +70,7 @@ public class AddFractionsTest {
         }
 
         public int getDenominator() {
-            return 5;
+            return denominator;
         }
     }
 }
