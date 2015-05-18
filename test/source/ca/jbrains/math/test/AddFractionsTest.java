@@ -57,7 +57,7 @@ public class AddFractionsTest {
                 return new Fraction(this.intValue() + augend.intValue());
             }
             else {
-                return new Fraction(this.numerator + augend.numerator, 5);
+                return new Fraction(this.numerator + augend.numerator, this.denominator);
             }
         }
 
