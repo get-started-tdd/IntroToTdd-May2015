@@ -7,25 +7,25 @@ import org.junit.Test;
 public class AddFractionsTest {
     @Test
     public void verySimplestHappyPath() throws Exception {
-        Fraction sum = new Fraction(0).plus(new Fraction(0));
+        Fraction sum = Fraction.withIntegerValue(0).plus(Fraction.withIntegerValue(0));
         Assert.assertEquals(0, sum.intValue());
     }
 
     @Test
     public void addendNotZero() throws Exception {
-        Fraction sum = new Fraction(1).plus(new Fraction(0));
+        Fraction sum = Fraction.withIntegerValue(1).plus(Fraction.withIntegerValue(0));
         Assert.assertEquals(1, sum.intValue());
     }
 
     @Test
     public void augendNotZero() throws Exception {
-        Fraction sum = new Fraction(0).plus(new Fraction(3));
+        Fraction sum = Fraction.withIntegerValue(0).plus(Fraction.withIntegerValue(3));
         Assert.assertEquals(3, sum.intValue());
     }
 
     @Test
     public void integersBothNotZero() throws Exception {
-        Fraction sum = new Fraction(4).plus(new Fraction(5));
+        Fraction sum = Fraction.withIntegerValue(4).plus(Fraction.withIntegerValue(5));
         Assert.assertEquals(9, sum.intValue());
     }
 
@@ -40,13 +40,13 @@ public class AddFractionsTest {
         private int numerator;
         private int denominator;
 
-        public Fraction(int integerValue) {
-            this(integerValue, 1);
-        }
-
         public Fraction(int numerator, int denominator) {
             this.numerator = numerator;
             this.denominator = denominator;
+        }
+
+        public static Fraction withIntegerValue(int integerValue) {
+            return new Fraction(integerValue, 1);
         }
 
         public Fraction plus(Fraction augend) {
