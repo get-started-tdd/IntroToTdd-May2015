@@ -66,7 +66,7 @@ public class AddFractionsTest {
         }
 
         public int getNumerator() {
-            return 3;
+            return numerator;
         }
 
         public int getDenominator() {
