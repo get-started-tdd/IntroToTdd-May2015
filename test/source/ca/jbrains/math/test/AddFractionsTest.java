@@ -37,13 +37,7 @@ public class AddFractionsTest {
         }
 
         public Fraction plus(Fraction augend) {
-            if (this.intValue() == 0) {
-                return augend;
-            } else if (augend.intValue() == 0){
-                return this;
-            } else {
-                return new Fraction(this.intValue() + augend.intValue());
-            }
+            return new Fraction(this.intValue() + augend.intValue());
         }
 
         public int intValue() {
