@@ -50,13 +50,9 @@ public class AddFractionsTest {
         }
 
         public Fraction plus(Fraction augend) {
-            if (this.denominator == 1) {
-                return new Fraction(this.intValue() + augend.intValue());
-            }
-            else {
-                return new Fraction(this.numerator + augend.numerator, this.denominator);
-            }
+            return new Fraction(this.numerator + augend.numerator, this.denominator);
         }
+        
 
         public int intValue() {
             return numerator;
