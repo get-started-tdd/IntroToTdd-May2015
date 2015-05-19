@@ -59,7 +59,7 @@ public class SellOneItemTest {
             if (pricesByBarcode.containsKey(barcode))
                 display.setText(pricesByBarcode.get(barcode));
             else
-                display.setText("Product not found for 99999");
+                display.setText("Product not found for " + barcode);
         }
     }
 
