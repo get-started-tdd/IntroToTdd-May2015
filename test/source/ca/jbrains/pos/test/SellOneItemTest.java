@@ -33,6 +33,19 @@ public class SellOneItemTest {
         Assert.assertEquals("12,50 EUR", display.getText());
     }
 
+    @Test
+    public void productNotFound() throws Exception {
+        final Display display = new Display();
+        final Sale sale = new Sale(display, new HashMap<String, String>() {{
+            put("12345", "7,95 EUR");
+            put("23456", "12,50 EUR");
+        }});
+
+        sale.onBarcode("99999");
+
+        Assert.assertEquals("Product not found for 99999", display.getText());
+    }
+
     public static class Sale {
         private Display display;
         private final Map<String, String> pricesByBarcode;
@@ -45,6 +58,8 @@ public class SellOneItemTest {
         public void onBarcode(String barcode) {
             if (pricesByBarcode.containsKey(barcode))
                 display.setText(pricesByBarcode.get(barcode));
+            else
+                display.setText("Product not found for 99999");
         }
     }
 
