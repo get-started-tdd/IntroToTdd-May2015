@@ -1,7 +1,6 @@
 package ca.jbrains.pos.test;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -11,7 +10,10 @@ public class SellOneItemTest {
     @Test
     public void productFound() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display);
+        final Sale sale = new Sale(display, new HashMap<String, String>() {{
+            put("12345", "7,95 EUR");
+            put("23456", "12,50 EUR");
+        }});
 
         sale.onBarcode("12345");
 
@@ -21,7 +23,10 @@ public class SellOneItemTest {
     @Test
     public void anotherProductFound() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display);
+        final Sale sale = new Sale(display, new HashMap<String, String>() {{
+            put("12345", "7,95 EUR");
+            put("23456", "12,50 EUR");
+        }});
 
         sale.onBarcode("23456");
 
@@ -30,17 +35,14 @@ public class SellOneItemTest {
 
     public static class Sale {
         private Display display;
+        private final Map<String, String> pricesByBarcode;
 
-        public Sale(Display display) {
+        public Sale(Display display, Map<String, String> pricesByBarcode) {
             this.display = display;
+            this.pricesByBarcode = pricesByBarcode;
         }
 
         public void onBarcode(String barcode) {
-            final Map<String, String> pricesByBarcode = new HashMap<String, String>() {{
-                put("12345", "7,95 EUR");
-                put("23456", "12,50 EUR");
-            }};
-
             if (pricesByBarcode.containsKey(barcode))
                 display.setText(pricesByBarcode.get(barcode));
         }
