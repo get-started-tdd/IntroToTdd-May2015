@@ -10,7 +10,7 @@ public class SellOneItemTest {
     @Test
     public void productFound() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new Sale.Catalog(new HashMap<String, String>() {{
+        final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
             put("12345", "7,95 EUR");
             put("23456", "12,50 EUR");
         }}));
@@ -23,7 +23,7 @@ public class SellOneItemTest {
     @Test
     public void anotherProductFound() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new Sale.Catalog(new HashMap<String, String>() {{
+        final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
             put("12345", "7,95 EUR");
             put("23456", "12,50 EUR");
         }}));
@@ -36,7 +36,7 @@ public class SellOneItemTest {
     @Test
     public void productNotFound() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new Sale.Catalog(new HashMap<String, String>() {{
+        final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
             put("12345", "7,95 EUR");
             put("23456", "12,50 EUR");
         }}));
@@ -49,7 +49,7 @@ public class SellOneItemTest {
     @Test
     public void emptyBarcode() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new Sale.Catalog(null));
+        final Sale sale = new Sale(display, new Catalog(null));
 
         sale.onBarcode("");
 
@@ -78,17 +78,6 @@ public class SellOneItemTest {
                 display.displayPrice(price);
         }
 
-        private static class Catalog {
-            private final Map<String, String> pricesByBarcode;
-
-            private Catalog(Map<String, String> pricesByBarcode) {
-                this.pricesByBarcode = pricesByBarcode;
-            }
-
-            public String findPrice(String barcode) {
-                return this.pricesByBarcode.get(barcode);
-            }
-        }
     }
 
     public static class Display {
@@ -108,6 +97,18 @@ public class SellOneItemTest {
 
         public void displayPrice(String price) {
             this.text = price;
+        }
+    }
+
+    public static class Catalog {
+        private final Map<String, String> pricesByBarcode;
+
+        private Catalog(Map<String, String> pricesByBarcode) {
+            this.pricesByBarcode = pricesByBarcode;
+        }
+
+        public String findPrice(String barcode) {
+            return this.pricesByBarcode.get(barcode);
         }
     }
 }
