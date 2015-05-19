@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SellOneItemTest {
     @Test
     public void productFound() throws Exception {
@@ -33,10 +36,13 @@ public class SellOneItemTest {
         }
 
         public void onBarcode(String barcode) {
-            if ("12345".equals(barcode))
-                display.setText("7,95 EUR");
-            else if ("23456".equals(barcode))
-                display.setText("12,50 EUR");
+            final Map<String, String> pricesByBarcode = new HashMap<String, String>() {{
+                put("12345", "7,95 EUR");
+                put("23456", "12,50 EUR");
+            }};
+
+            if (pricesByBarcode.containsKey(barcode))
+                display.setText(pricesByBarcode.get(barcode));
         }
     }
 
