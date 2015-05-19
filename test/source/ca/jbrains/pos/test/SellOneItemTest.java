@@ -58,7 +58,7 @@ public class SellOneItemTest {
 
     public static class Sale {
         private final Map<String, String> pricesByBarcode;
-        private Display display;
+        private final Display display;
 
         public Sale(Display display, Map<String, String> pricesByBarcode) {
             this.display = display;
