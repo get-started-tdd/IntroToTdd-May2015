@@ -49,10 +49,7 @@ public class SellOneItemTest {
     @Test
     public void emptyBarcode() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new HashMap<String, String>() {{
-            put("12345", "7,95 EUR");
-            put("23456", "12,50 EUR");
-        }});
+        final Sale sale = new Sale(display, null);
 
         sale.onBarcode("");
 
