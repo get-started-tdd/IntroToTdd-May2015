@@ -19,6 +19,16 @@ public class FindPriceInMemoryCatalogTest {
                 inMemoryCatalog.findPrice("12345"));
     }
 
+    @Test
+    public void productNotFound() throws Exception {
+        final InMemoryCatalog inMemoryCatalog = new InMemoryCatalog(
+                Collections.emptyMap());
+
+        Assert.assertEquals(
+                null,
+                inMemoryCatalog.findPrice("12345"));
+    }
+
     public static class InMemoryCatalog {
         private Map<String, SellOneItemControllerTest.Price> pricesByBarcode;
 
