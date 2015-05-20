@@ -1,5 +1,9 @@
 package ca.jbrains.pos.test;
 
+import ca.jbrains.pos.Catalog;
+import ca.jbrains.pos.Display;
+import ca.jbrains.pos.Price;
+import ca.jbrains.pos.SellOneItemController;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
@@ -60,26 +64,4 @@ public class SellOneItemControllerTest {
         sellOneItemController.onBarcode("");
     }
 
-    public static class SellOneItemController {
-        private Catalog catalog;
-        private Display display;
-
-        public SellOneItemController(Catalog catalog, Display display) {
-            this.catalog = catalog;
-            this.display = display;
-        }
-
-        public void onBarcode(String barcode) {
-            if ("".equals(barcode)) {
-                display.displayScannedEmptyBarcodeMessage();
-                return;
-            }
-
-            final Price price = catalog.findPrice(barcode);
-            if (price == null)
-                display.displayProductNotFoundMessage(barcode);
-            else
-                display.displayPrice(price);
-        }
-    }
 }

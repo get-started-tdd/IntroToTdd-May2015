@@ -1,7 +1,7 @@
 package ca.jbrains.pos.test;
 
-import org.junit.Assert;
-import org.junit.Test;
+import ca.jbrains.pos.Catalog;
+import ca.jbrains.pos.Price;
 
 import java.util.Collections;
 import java.util.HashMap;

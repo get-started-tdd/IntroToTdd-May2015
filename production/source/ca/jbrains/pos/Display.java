@@ -1,4 +1,6 @@
-package ca.jbrains.pos.test;
+package ca.jbrains.pos;
+
+import ca.jbrains.pos.Price;
 
 public interface Display {
     void displayPrice(Price price);
