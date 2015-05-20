@@ -94,5 +94,4 @@ public class SellOneItemControllerTest {
                 display.displayPrice(price);
         }
     }
-
 }

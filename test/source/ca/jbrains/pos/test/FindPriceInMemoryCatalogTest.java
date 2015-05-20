@@ -14,9 +14,7 @@ public class FindPriceInMemoryCatalogTest {
         final InMemoryCatalog inMemoryCatalog = new InMemoryCatalog(
                 Collections.singletonMap("12345", price));
 
-        Assert.assertEquals(
-                price,
-                inMemoryCatalog.findPrice("12345"));
+        Assert.assertEquals(price, inMemoryCatalog.findPrice("12345"));
     }
 
     @Test
@@ -24,9 +22,7 @@ public class FindPriceInMemoryCatalogTest {
         final InMemoryCatalog inMemoryCatalog = new InMemoryCatalog(
                 Collections.emptyMap());
 
-        Assert.assertEquals(
-                null,
-                inMemoryCatalog.findPrice("12345"));
+        Assert.assertEquals(null, inMemoryCatalog.findPrice("12345"));
     }
 
     public static class InMemoryCatalog {
