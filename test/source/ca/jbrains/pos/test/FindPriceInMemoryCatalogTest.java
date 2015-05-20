@@ -11,10 +11,10 @@ public class FindPriceInMemoryCatalogTest {
     public void productFound() throws Exception {
         final Price price = Price.cents(795);
 
-        final InMemoryCatalog inMemoryCatalog = new InMemoryCatalog(
+        final Catalog catalog = new InMemoryCatalog(
                 Collections.singletonMap("12345", price));
 
-        Assert.assertEquals(price, inMemoryCatalog.findPrice("12345"));
+        Assert.assertEquals(price, catalog.findPrice("12345"));
     }
 
     @Test
