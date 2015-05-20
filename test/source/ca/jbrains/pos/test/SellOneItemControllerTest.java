@@ -86,7 +86,7 @@ public class SellOneItemControllerTest {
                 display.displayScannedEmptyBarcodeMessage();
                 return;
             }
-            
+
             final Price price = catalog.findPrice(barcode);
             if (price == null)
                 display.displayProductNotFoundMessage(barcode);
