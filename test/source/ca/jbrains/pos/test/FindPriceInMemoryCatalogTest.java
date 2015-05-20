@@ -10,9 +10,7 @@ public class FindPriceInMemoryCatalogTest {
     @Test
     public void productFound() throws Exception {
         final Price price = Price.cents(795);
-
         final Catalog catalog = catalogWith("12345", price);
-
         Assert.assertEquals(price, catalog.findPrice("12345"));
     }
 
