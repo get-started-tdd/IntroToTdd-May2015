@@ -21,10 +21,10 @@ public class FindPriceInMemoryCatalogTest {
 
     @Test
     public void productNotFound() throws Exception {
-        final InMemoryCatalog inMemoryCatalog = new InMemoryCatalog(
+        final Catalog catalog = new InMemoryCatalog(
                 Collections.emptyMap());
 
-        Assert.assertEquals(null, inMemoryCatalog.findPrice("12345"));
+        Assert.assertEquals(null, catalog.findPrice("12345"));
     }
 
     public static class InMemoryCatalog implements Catalog {
