@@ -9,7 +9,7 @@ import java.util.Map;
 public class FindPriceInMemoryCatalogTest {
     @Test
     public void productFound() throws Exception {
-        final SellOneItemControllerTest.Price price = SellOneItemControllerTest.Price.cents(795);
+        final Price price = Price.cents(795);
 
         final InMemoryCatalog inMemoryCatalog = new InMemoryCatalog(
                 Collections.singletonMap("12345", price));
@@ -30,13 +30,13 @@ public class FindPriceInMemoryCatalogTest {
     }
 
     public static class InMemoryCatalog {
-        private Map<String, SellOneItemControllerTest.Price> pricesByBarcode;
+        private Map<String, Price> pricesByBarcode;
 
-        public InMemoryCatalog(Map<String, SellOneItemControllerTest.Price> pricesByBarcode) {
+        public InMemoryCatalog(Map<String, Price> pricesByBarcode) {
             this.pricesByBarcode = pricesByBarcode;
         }
 
-        public SellOneItemControllerTest.Price findPrice(String barcode) {
+        public Price findPrice(String barcode) {
             return pricesByBarcode.get(barcode);
         }
     }
