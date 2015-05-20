@@ -15,7 +15,7 @@ public class FindPriceInMemoryCatalogTest {
         Assert.assertEquals(price, catalog.findPrice("12345"));
     }
 
-    private InMemoryCatalog catalogWith(String barcode, Price price) {
+    private Catalog catalogWith(String barcode, Price price) {
         return new InMemoryCatalog(
                 Collections.singletonMap(barcode, price));
     }
@@ -26,7 +26,7 @@ public class FindPriceInMemoryCatalogTest {
         Assert.assertEquals(null, catalog.findPrice("12345"));
     }
 
-    private InMemoryCatalog catalogWithout(String barcodeToAvoid) {
+    private Catalog catalogWithout(String barcodeToAvoid) {
         return new InMemoryCatalog(new HashMap<String, Price>() {{
             put("not " + barcodeToAvoid, Price.cents(0));
             put("certainly not " + barcodeToAvoid, Price.cents(7873));
