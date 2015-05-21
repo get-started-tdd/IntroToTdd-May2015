@@ -10,10 +10,7 @@ public class SellOneItemTest {
     @Test
     public void productFound() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
-            put("12345", "7,95 EUR");
-            put("23456", "12,50 EUR");
-        }}, new HashMap<String, Integer>() {{
+        final Sale sale = new Sale(display, new Catalog(new HashMap<String, Integer>() {{
             put("12345", 795);
             put("23456", 1250);
         }}));
@@ -26,10 +23,7 @@ public class SellOneItemTest {
     @Test
     public void anotherProductFound() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
-            put("12345", "7,95 EUR");
-            put("23456", "12,50 EUR");
-        }}, new HashMap<String, Integer>() {{
+        final Sale sale = new Sale(display, new Catalog(new HashMap<String, Integer>() {{
             put("12345", 795);
             put("23456", 1250);
         }}));
@@ -42,10 +36,7 @@ public class SellOneItemTest {
     @Test
     public void productNotFound() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
-            put("12345", "7,95 EUR");
-            put("23456", "12,50 EUR");
-        }}, new HashMap<String, Integer>() {{
+        final Sale sale = new Sale(display, new Catalog(new HashMap<String, Integer>() {{
             put("12345", 795);
             put("23456", 1250);
         }}));
@@ -110,24 +101,18 @@ public class SellOneItemTest {
     }
 
     public static class Catalog {
-        private final Map<String, String> formattedPricesByBarcode;
         private final Map<String, Integer> pricesByBarcode;
 
-        public Catalog(Map<String, String> formattedPricesByBarcode, Map<String, Integer> pricesByBarcode) {
-            this.formattedPricesByBarcode = formattedPricesByBarcode;
+        public Catalog(Map<String, Integer> pricesByBarcode) {
             this.pricesByBarcode = pricesByBarcode;
         }
 
         public String findPrice(String barcode) {
-            if (pricesByBarcode == null)
-                return this.formattedPricesByBarcode.get(barcode);
-            else {
-                final Integer priceAsCents = this.pricesByBarcode.get(barcode);
-                if (priceAsCents == null)
-                    return null;
-                else
-                    return formatPrice(priceAsCents);
-            }
+            final Integer priceAsCents = this.pricesByBarcode.get(barcode);
+            if (priceAsCents == null)
+                return null;
+            else
+                return formatPrice(priceAsCents);
         }
 
         private String formatPrice(Integer priceAsCents) {
