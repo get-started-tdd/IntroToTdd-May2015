@@ -111,8 +111,7 @@ public class SellOneItemTest {
         }
 
         private String formatPrice(Integer priceAsCents) {
-            return String.format("%.2f", priceAsCents / 100.0d) +
-                    " EUR";
+            return String.format("%.2f", priceAsCents / 100.0d) + " EUR";
         }
     }
 }
