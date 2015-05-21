@@ -13,11 +13,14 @@ public class SellOneItemTest {
         final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
             put("12345", "7,95 EUR");
             put("23456", "12,50 EUR");
+        }}, new HashMap<String, Integer>() {{
+            put("12345", 795);
+            put("23456", 1250);
         }}));
 
         sale.onBarcode("12345");
 
-        Assert.assertEquals("7,95 EUR", display.getText());
+        Assert.assertEquals("7.95 EUR", display.getText());
     }
 
     @Test
@@ -26,11 +29,14 @@ public class SellOneItemTest {
         final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
             put("12345", "7,95 EUR");
             put("23456", "12,50 EUR");
+        }}, new HashMap<String, Integer>() {{
+            put("12345", 795);
+            put("23456", 1250);
         }}));
 
         sale.onBarcode("23456");
 
-        Assert.assertEquals("12,50 EUR", display.getText());
+        Assert.assertEquals("12.50 EUR", display.getText());
     }
 
     @Test
@@ -39,6 +45,9 @@ public class SellOneItemTest {
         final Sale sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
             put("12345", "7,95 EUR");
             put("23456", "12,50 EUR");
+        }}, new HashMap<String, Integer>() {{
+            put("12345", 795);
+            put("23456", 1250);
         }}));
 
         sale.onBarcode("99999");
@@ -49,7 +58,7 @@ public class SellOneItemTest {
     @Test
     public void emptyBarcode() throws Exception {
         final Display display = new Display();
-        final Sale sale = new Sale(display, new Catalog(null));
+        final Sale sale = new Sale(display, null);
 
         sale.onBarcode("");
 
@@ -101,14 +110,29 @@ public class SellOneItemTest {
     }
 
     public static class Catalog {
-        private final Map<String, String> pricesByBarcode;
+        private final Map<String, String> formattedPricesByBarcode;
+        private final Map<String, Integer> pricesByBarcode;
 
-        private Catalog(Map<String, String> pricesByBarcode) {
+        public Catalog(Map<String, String> formattedPricesByBarcode, Map<String, Integer> pricesByBarcode) {
+            this.formattedPricesByBarcode = formattedPricesByBarcode;
             this.pricesByBarcode = pricesByBarcode;
         }
 
         public String findPrice(String barcode) {
-            return this.pricesByBarcode.get(barcode);
+            if (pricesByBarcode == null)
+                return this.formattedPricesByBarcode.get(barcode);
+            else {
+                final Integer priceAsCents = this.pricesByBarcode.get(barcode);
+                if (priceAsCents == null)
+                    return null;
+                else
+                    return formatPrice(priceAsCents);
+            }
+        }
+
+        private String formatPrice(Integer priceAsCents) {
+            return String.format("%.2f", priceAsCents / 100.0d) +
+                    " EUR";
         }
     }
 }
