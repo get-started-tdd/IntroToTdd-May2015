@@ -71,13 +71,12 @@ public class SellOneItemTest {
                 return;
             }
 
-            final String price = catalog.findPrice(barcode);
-            if (price == null)
+            final Integer priceAsCents = catalog.findPrice(barcode);
+            if (priceAsCents == null)
                 display.displayProductNotFoundMessage(barcode);
             else
-                display.displayPrice(price);
+                display.displayPrice(catalog.formatPrice(priceAsCents));
         }
-
     }
 
     public static class Display {
@@ -107,12 +106,8 @@ public class SellOneItemTest {
             this.pricesByBarcode = pricesByBarcode;
         }
 
-        public String findPrice(String barcode) {
-            final Integer priceAsCents = this.pricesByBarcode.get(barcode);
-            if (priceAsCents == null)
-                return null;
-            else
-                return formatPrice(priceAsCents);
+        private Integer findPrice(String barcode) {
+            return this.pricesByBarcode.get(barcode);
         }
 
         private String formatPrice(Integer priceAsCents) {
