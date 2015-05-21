@@ -75,12 +75,16 @@ public class SellOneItemTest {
             if (priceAsCents == null)
                 display.displayProductNotFoundMessage(barcode);
             else
-                display.displayPrice(catalog.formatPrice(priceAsCents));
+                display.displayPrice(Display.formatPrice(priceAsCents));
         }
     }
 
     public static class Display {
         private String text;
+
+        public static String formatPrice(Integer priceAsCents) {
+            return String.format("%.2f", priceAsCents / 100.0d) + " EUR";
+        }
 
         public String getText() {
             return text;
@@ -110,8 +114,5 @@ public class SellOneItemTest {
             return this.pricesByBarcode.get(barcode);
         }
 
-        private String formatPrice(Integer priceAsCents) {
-            return String.format("%.2f", priceAsCents / 100.0d) + " EUR";
-        }
     }
 }
