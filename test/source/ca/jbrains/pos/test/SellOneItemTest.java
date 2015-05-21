@@ -75,8 +75,9 @@ public class SellOneItemTest {
             if (priceAsCents == null)
                 display.displayProductNotFoundMessage(barcode);
             else
-                display.displayPrice(Display.formatPrice(priceAsCents));
+                display.displayPrice(priceAsCents);
         }
+
     }
 
     public static class Display {
@@ -98,8 +99,8 @@ public class SellOneItemTest {
             this.text = "Scanning error: empty barcode";
         }
 
-        public void displayPrice(String price) {
-            this.text = price;
+        public void displayPrice(Integer priceAsCents) {
+            this.text = formatPrice(priceAsCents);
         }
     }
 
