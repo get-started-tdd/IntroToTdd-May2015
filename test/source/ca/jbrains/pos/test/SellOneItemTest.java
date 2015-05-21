@@ -114,6 +114,5 @@ public class SellOneItemTest {
         private Integer findPrice(String barcode) {
             return this.pricesByBarcode.get(barcode);
         }
-
     }
 }
