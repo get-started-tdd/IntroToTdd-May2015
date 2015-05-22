@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/test/classes"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/test/source"/>
+	</contentEntry>
+	<lib name="F:\get-started-tdd\IntroToTdd-May2015\test\vendor" scope="TEST">
+		<relative-module-cls project-related="file://$PROJECT_DIR$/test/vendor"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/test/vendor/junit-4.11.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/test/vendor/jmock-2.6.0.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/test/vendor/hamcrest-core-1.3.jar!/"/>
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/test/vendor/jmock-junit4-2.6.0.jar!/"/>
+	</lib>
+</component>
